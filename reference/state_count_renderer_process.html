@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Creates a DataClass design pattern
-readonly class for collecting related fields
-implementation inspired by https://github.com/r-lib/R6/issues/186 — DataClass • individual</title>
+<title>create a process to render the number of individuals in the specified states — state_count_renderer_process • individual</title>
 
 
 <!-- jquery -->
@@ -37,12 +35,8 @@ implementation inspired by https://github.com/r-lib/R6/issues/186 — DataClass 
 
 
 
-<meta property="og:title" content="Creates a DataClass design pattern
-readonly class for collecting related fields
-implementation inspired by https://github.com/r-lib/R6/issues/186 — DataClass" />
-<meta property="og:description" content="Creates a DataClass design pattern
-readonly class for collecting related fields
-implementation inspired by https://github.com/r-lib/R6/issues/186" />
+<meta property="og:title" content="create a process to render the number of individuals in the specified states — state_count_renderer_process" />
+<meta property="og:description" content="create a process to render the number of individuals in the specified states" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,6 +94,12 @@ implementation inspired by https://github.com/r-lib/R6/issues/186" />
     <li>
       <a href="../articles/Modelling.html">Modelling</a>
     </li>
+    <li>
+      <a href="../articles/Performance.html">Performance</a>
+    </li>
+    <li>
+      <a href="../articles/Scheduling.html">Scheduling</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -118,39 +118,27 @@ implementation inspired by https://github.com/r-lib/R6/issues/186" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Creates a DataClass design pattern
-readonly class for collecting related fields
-implementation inspired by https://github.com/r-lib/R6/issues/186</h1>
+    <h1>create a process to render the number of individuals in the specified states</h1>
     
-    <div class="hidden name"><code>DataClass.Rd</code></div>
+    <div class="hidden name"><code>state_count_renderer_process.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a DataClass design pattern
-readonly class for collecting related fields
-implementation inspired by https://github.com/r-lib/R6/issues/186</p>
+    <p>create a process to render the number of individuals in the specified states</p>
     </div>
 
-    <pre class="usage"><span class='fu'>DataClass</span>(<span class='no'>classname</span>, <span class='no'>fields</span>, <span class='no'>initialize</span>, <span class='kw'>print_fields</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>state_count_renderer_process</span>(<span class='no'>individual</span>, <span class='no'>states</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>classname</th>
-      <td><p>is the name of the class</p></td>
+      <th>individual</th>
+      <td><p>the name of an individual</p></td>
     </tr>
     <tr>
-      <th>fields</th>
-      <td><p>is a sequence of readonly fields to create</p></td>
-    </tr>
-    <tr>
-      <th>initialize</th>
-      <td><p>is the initialisation funtion</p></td>
-    </tr>
-    <tr>
-      <th>print_fields</th>
-      <td><p>are the fields to print</p></td>
+      <th>states</th>
+      <td><p>a vector of state names</p></td>
     </tr>
     </table>
 

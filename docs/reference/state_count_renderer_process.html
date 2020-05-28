@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: StateUpdate
-Describes a state update — StateUpdate • individual</title>
+<title>create a process to render the number of individuals in the specified states — state_count_renderer_process • individual</title>
 
 
 <!-- jquery -->
@@ -36,12 +35,8 @@ Describes a state update — StateUpdate • individual</title>
 
 
 
-<meta property="og:title" content="Class: StateUpdate
-Describes a state update — StateUpdate" />
-<meta property="og:description" content="Class: StateUpdate
-Describes a state update
-Class: StateUpdate
-Describes a state update" />
+<meta property="og:title" content="create a process to render the number of individuals in the specified states — state_count_renderer_process" />
+<meta property="og:description" content="create a process to render the number of individuals in the specified states" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,6 +94,12 @@ Describes a state update" />
     <li>
       <a href="../articles/Modelling.html">Modelling</a>
     </li>
+    <li>
+      <a href="../articles/Performance.html">Performance</a>
+    </li>
+    <li>
+      <a href="../articles/Scheduling.html">Scheduling</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -117,69 +118,36 @@ Describes a state update" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class: StateUpdate
-Describes a state update</h1>
+    <h1>create a process to render the number of individuals in the specified states</h1>
     
-    <div class="hidden name"><code>StateUpdate.Rd</code></div>
+    <div class="hidden name"><code>state_count_renderer_process.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class: StateUpdate
-Describes a state update</p>
-<p>Class: StateUpdate
-Describes a state update</p>
+    <p>create a process to render the number of individuals in the specified states</p>
     </div>
 
+    <pre class="usage"><span class='fu'>state_count_renderer_process</span>(<span class='no'>individual</span>, <span class='no'>states</span>)</pre>
 
-
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-<h3>Public methods</h3>
-
-<ul>
-<li><p><a href='#method-new'><code>StateUpdate$new()</code></a></p></li>
-<li><p><a href='#method-print'><code>StateUpdate$print()</code></a></p></li>
-<li><p><a href='#method-clone'><code>StateUpdate$clone()</code></a></p></li>
-</ul>
-<p><hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Create a new StateUpdate descriptor</p><h3>Usage</h3>
-<p><div class="r"></p><pre>StateUpdate$new(individual, state, index)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individual</code></dt><dd><p>is the type of individual to update</p></dd>
-
-<dt><code>state</code></dt><dd><p>is the destination state of the update</p></dd>
-
-<dt><code>index</code></dt><dd><p>is the index at which to apply the change</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-print"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
-
-<h3>Usage</h3>
-<p><div class="r"></p><pre>StateUpdate$print()</pre><p></div></p>
-
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>StateUpdate$clone(deep = FALSE)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
-
-</dl><p></div></p>
-
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>individual</th>
+      <td><p>the name of an individual</p></td>
+    </tr>
+    <tr>
+      <th>states</th>
+      <td><p>a vector of state names</p></td>
+    </tr>
+    </table>
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#methods">Methods</a></li>
+      <li><a href="#arguments">Arguments</a></li>
     </ul>
 
   </div>

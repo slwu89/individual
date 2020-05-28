@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: Simulation
-Class to store and update the simulation for each type of individual — Simulation • individual</title>
+<title>Authors • individual</title>
 
 
 <!-- jquery -->
@@ -30,19 +29,13 @@ Class to store and update the simulation for each type of individual — Simulat
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Class: Simulation
-Class to store and update the simulation for each type of individual — Simulation" />
-<meta property="og:description" content="Class: Simulation
-Class to store and update the simulation for each type of individual
-Class: Simulation
-Class to store and update the simulation for each type of individual" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Authors" />
 
 
 
@@ -61,7 +54,7 @@ Class to store and update the simulation for each type of individual" />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-authors">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -73,7 +66,7 @@ Class to store and update the simulation for each type of individual" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">individual</a>
+        <a class="navbar-link" href="index.html">individual</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
       </span>
     </div>
@@ -81,13 +74,13 @@ Class to store and update the simulation for each type of individual" />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -97,7 +90,13 @@ Class to store and update the simulation for each type of individual" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Modelling.html">Modelling</a>
+      <a href="articles/Modelling.html">Modelling</a>
+    </li>
+    <li>
+      <a href="articles/Performance.html">Performance</a>
+    </li>
+    <li>
+      <a href="articles/Scheduling.html">Scheduling</a>
     </li>
   </ul>
 </li>
@@ -115,95 +114,26 @@ Class to store and update the simulation for each type of individual" />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Class: Simulation
-Class to store and update the simulation for each type of individual</h1>
-    
-    <div class="hidden name"><code>Simulation.Rd</code></div>
+      <h1>Authors</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Class: Simulation
-Class to store and update the simulation for each type of individual</p>
-<p>Class: Simulation
-Class to store and update the simulation for each type of individual</p>
-    </div>
-
-
-
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-<h3>Public methods</h3>
-
-<ul>
-<li><p><a href='#method-render'><code>Simulation$render()</code></a></p></li>
-<li><p><a href='#method-get_current_frame'><code>Simulation$get_current_frame()</code></a></p></li>
-<li><p><a href='#method-apply_updates'><code>Simulation$apply_updates()</code></a></p></li>
-<li><p><a href='#method-new'><code>Simulation$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Simulation$clone()</code></a></p></li>
-</ul>
-<p><hr>
-<a id="method-render"></a></p><h3>Method <code>render()</code></h3>
-<p>Return a list of the simulated states and variables for the simulation</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Simulation$render(individual)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individual</code></dt><dd><p>to render</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-get_current_frame"></a></p><h3>Method <code>get_current_frame()</code></h3>
-<p>Get a SimFrame for the current timestep</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Simulation$get_current_frame()</pre><p></div></p>
-
-<p><hr>
-<a id="method-apply_updates"></a></p><h3>Method <code>apply_updates()</code></h3>
-<p>Perform updates on the a simulation, increment the counter and return the
-next simulation frame</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Simulation$apply_updates(updates)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>updates</code></dt><dd><p>is a list of updates to apply</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Create a blank simulation and then initialize first timestep</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Simulation$new(individuals, timesteps)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individuals</code></dt><dd><p>a list of Individual to initialise for</p></dd>
-
-<dt><code>timesteps</code></dt><dd><p>the number of timesteps to initialise for</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>Simulation$clone(deep = FALSE)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
-
-</dl><p></div></p>
-
-
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#methods">Methods</a></li>
+    <ul class="list-unstyled">
+      <li>
+        <p><strong>Giovanni Charles</strong>. Author, maintainer. 
+        </p>
+      </li>
+      <li>
+        <p><strong>Imperial College of Science, Technology and Medicine</strong>. Copyright holder. 
+        </p>
+      </li>
     </ul>
 
   </div>
+
 </div>
+
 
 
       <footer>

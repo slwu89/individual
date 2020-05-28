@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: SimFrame
-Represents the state of all individuals in a timestep — SimFrame • individual</title>
+<title>create a process to render the mean value of the specified variables — variable_mean_renderer_process • individual</title>
 
 
 <!-- jquery -->
@@ -36,12 +35,8 @@ Represents the state of all individuals in a timestep — SimFrame • individua
 
 
 
-<meta property="og:title" content="Class: SimFrame
-Represents the state of all individuals in a timestep — SimFrame" />
-<meta property="og:description" content="Class: SimFrame
-Represents the state of all individuals in a timestep
-Class: SimFrame
-Represents the state of all individuals in a timestep" />
+<meta property="og:title" content="create a process to render the mean value of the specified variables — variable_mean_renderer_process" />
+<meta property="og:description" content="create a process to render the mean value of the specified variables" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,6 +94,12 @@ Represents the state of all individuals in a timestep" />
     <li>
       <a href="../articles/Modelling.html">Modelling</a>
     </li>
+    <li>
+      <a href="../articles/Performance.html">Performance</a>
+    </li>
+    <li>
+      <a href="../articles/Scheduling.html">Scheduling</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -117,106 +118,36 @@ Represents the state of all individuals in a timestep" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class: SimFrame
-Represents the state of all individuals in a timestep</h1>
+    <h1>create a process to render the mean value of the specified variables</h1>
     
-    <div class="hidden name"><code>SimFrame.Rd</code></div>
+    <div class="hidden name"><code>variable_mean_renderer_process.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class: SimFrame
-Represents the state of all individuals in a timestep</p>
-<p>Class: SimFrame
-Represents the state of all individuals in a timestep</p>
+    <p>create a process to render the mean value of the specified variables</p>
     </div>
 
+    <pre class="usage"><span class='fu'>variable_mean_renderer_process</span>(<span class='no'>individual</span>, <span class='no'>variables</span>)</pre>
 
-
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-<h3>Public methods</h3>
-
-<ul>
-<li><p><a href='#method-get_state'><code>SimFrame$get_state()</code></a></p></li>
-<li><p><a href='#method-get_variable'><code>SimFrame$get_variable()</code></a></p></li>
-<li><p><a href='#method-get_constant'><code>SimFrame$get_constant()</code></a></p></li>
-<li><p><a href='#method-new'><code>SimFrame$new()</code></a></p></li>
-<li><p><a href='#method-clone'><code>SimFrame$clone()</code></a></p></li>
-</ul>
-<p><hr>
-<a id="method-get_state"></a></p><h3>Method <code>get_state()</code></h3>
-<p>Get the index of individuals with a particular state</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimFrame$get_state(individual, ...)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individual</code></dt><dd><p>of interest</p></dd>
-
-<dt><code>state</code></dt><dd><p>of interest</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-get_variable"></a></p><h3>Method <code>get_variable()</code></h3>
-<p>Get a variable vector for an individual</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimFrame$get_variable(individual, variable)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individual</code></dt><dd><p>of interest</p></dd>
-
-<dt><code>variable</code></dt><dd><p>of interest</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-get_constant"></a></p><h3>Method <code>get_constant()</code></h3>
-<p>Get a constant vector for an individual</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimFrame$get_constant(individual, constant)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individual</code></dt><dd><p>of interest</p></dd>
-
-<dt><code>constant</code></dt><dd><p>of interest</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Create an initial SimFrame</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimFrame$new(individuals, states, variables, constants)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>individuals</code></dt><dd><p>is a list of Individual</p></dd>
-
-<dt><code>variables</code></dt><dd><p>is a list of variables for each individual at the
-current timestep</p></dd>
-
-<dt><code>constants</code></dt><dd><p>is a list of constants for each individual at the
-current timestep</p></dd>
-
-<dt><code>state</code></dt><dd><p>is a list of states for each individual at the current
-timestep</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimFrame$clone(deep = FALSE)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
-
-</dl><p></div></p>
-
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>individual</th>
+      <td><p>the name of an individual</p></td>
+    </tr>
+    <tr>
+      <th>variables</th>
+      <td><p>a vector of variable names</p></td>
+    </tr>
+    </table>
 
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#methods">Methods</a></li>
+      <li><a href="#arguments">Arguments</a></li>
     </ul>
 
   </div>
