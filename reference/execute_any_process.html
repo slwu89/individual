@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: Event
-Describes an event in the simulation — Event • individual</title>
+<title>Execute a cpp or R process in the simulation — execute_any_process • individual</title>
 
 
 <!-- jquery -->
@@ -40,12 +39,8 @@ Describes an event in the simulation — Event • individual</title>
 
 
 
-<meta property="og:title" content="Class: Event
-Describes an event in the simulation — Event" />
-<meta property="og:description" content="Class: Event
-Describes an event in the simulation
-Class: Event
-Describes an event in the simulation" />
+<meta property="og:title" content="Execute a cpp or R process in the simulation — execute_any_process" />
+<meta property="og:description" content="Execute a cpp or R process in the simulation" />
 
 
 
@@ -126,72 +121,33 @@ Describes an event in the simulation" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class: Event
-Describes an event in the simulation</h1>
+    <h1>Execute a cpp or R process in the simulation</h1>
     
-    <div class="hidden name"><code>Event.Rd</code></div>
+    <div class="hidden name"><code>execute_any_process.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class: Event
-Describes an event in the simulation</p>
-<p>Class: Event
-Describes an event in the simulation</p>
+    <p>Execute a cpp or R process in the simulation</p>
     </div>
 
+    <pre class="usage"><span class='fu'>execute_any_process</span>(<span class='no'>p</span>, <span class='no'>api</span>, <span class='no'>cpp_api</span>)</pre>
 
-
-    <h2 class="hasAnchor" id="public-fields"><a class="anchor" href="#public-fields"></a>Public fields</h2>
-
-    <p><div class="r6-fields"></p><dl'>
-<dt><code>name</code></dt><dd><p>the unique name of the event</p></dd>
-
-<dt><code>listeners</code></dt><dd><p>the listener functions to be executed when the event is
-triggered</p></dd>
-
-</dl><p></div></p>
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-<h3>Public methods</h3>
-
-<ul>
-<li><p><a href='#method-new'><code>Event$new()</code></a></p></li>
-<li><p><a href='#method-add_listener'><code>Event$add_listener()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Event$clone()</code></a></p></li>
-</ul>
-<p><hr>
-<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
-<p>Initialise an Event</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Event</span>$<span class='fu'>new</span>(<span class='no'>name</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>name, </code></dt><dd><p>the name of the event</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-add_listener"></a></p><h3>Method <code>add_listener()</code></h3>
-<p>Add an event listener</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Event</span>$<span class='fu'>add_listener</span>(<span class='no'>listener</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>listener</code></dt><dd><p>the function to be executed on the event. This function
-should take the simulation api and target individuals as arguments</p></dd>
-
-</dl><p></div></p>
-<p><hr>
-<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
-<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre><span class='no'>Event</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
-
-<h3>Arguments</h3>
-<p><div class="arguments"></p><dl'>
-<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
-
-</dl><p></div></p>
-
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>p</th>
+      <td><p>the process to execute</p></td>
+    </tr>
+    <tr>
+      <th>api</th>
+      <td><p>the R api</p></td>
+    </tr>
+    <tr>
+      <th>cpp_api</th>
+      <td><p>the C++ api</p></td>
+    </tr>
+    </table>
 
 
   </div>

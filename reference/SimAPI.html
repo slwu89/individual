@@ -11,23 +11,27 @@ The entry point for models to inspect and manipulate the simulation — SimAPI �
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,6 @@ The entry point for models to inspect and manipulate the simulation — SimAPI" 
 The entry point for models to inspect and manipulate the simulation
 Class: SimAPI
 The entry point for models to inspect and manipulate the simulation" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,7 +63,7 @@ The entry point for models to inspect and manipulate the simulation" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,7 +77,7 @@ The entry point for models to inspect and manipulate the simulation" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -160,10 +163,10 @@ The entry point for models to inspect and manipulate the simulation</p>
 <p><hr>
 <a id="method-get_state"></a></p><h3>Method <code>get_state()</code></h3>
 <p>Get the index of individuals with a particular state</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$get_state(individual, ...)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>get_state</span>(<span class='no'>individual</span>, <span class='no'>...</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>individual</code></dt><dd><p>of interest</p></dd>
 
 <dt><code>...</code></dt><dd><p>the states of interest</p></dd>
@@ -172,10 +175,10 @@ The entry point for models to inspect and manipulate the simulation</p>
 <p><hr>
 <a id="method-get_variable"></a></p><h3>Method <code>get_variable()</code></h3>
 <p>Get a variable vector for an individual</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$get_variable(individual, variable, index = NULL)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>get_variable</span>(<span class='no'>individual</span>, <span class='no'>variable</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>individual</code></dt><dd><p>the individual of interest</p></dd>
 
 <dt><code>variable</code></dt><dd><p>the variable of interest</p></dd>
@@ -186,10 +189,10 @@ The entry point for models to inspect and manipulate the simulation</p>
 <p><hr>
 <a id="method-queue_state_update"></a></p><h3>Method <code>queue_state_update()</code></h3>
 <p>Queue a state update for the end of the timestep</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$queue_state_update(individual, state, index)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>queue_state_update</span>(<span class='no'>individual</span>, <span class='no'>state</span>, <span class='no'>index</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>individual</code></dt><dd><p>the individual of interest</p></dd>
 
 <dt><code>state</code></dt><dd><p>the target state</p></dd>
@@ -210,10 +213,10 @@ replaces all of the current values in the simulation. The value vector is
 should match the size of the population.
 4. Variable fill. The index vector is set to `NULL` and the value vector,
 of size 1, is used to fill all of the variable values in the population.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$queue_variable_update(individual, variable, values, index = numeric(0))</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>queue_variable_update</span>(<span class='no'>individual</span>, <span class='no'>variable</span>, <span class='no'>values</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>numeric</a></span>(<span class='fl'>0</span>))</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>individual</code></dt><dd><p>is the type of individual to update</p></dd>
 
 <dt><code>variable</code></dt><dd><p>a Variable object representing the variable to change</p></dd>
@@ -227,10 +230,10 @@ fill options</p></dd>
 <p><hr>
 <a id="method-schedule"></a></p><h3>Method <code>schedule()</code></h3>
 <p>Schedule an event to occur in the future</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$schedule(event, target, delay)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>schedule</span>(<span class='no'>event</span>, <span class='no'>target</span>, <span class='no'>delay</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>event</code></dt><dd><p>the event to schedule</p></dd>
 
 <dt><code>target</code></dt><dd><p>the individuals to pass to the listener</p></dd>
@@ -241,20 +244,20 @@ fill options</p></dd>
 <p><hr>
 <a id="method-get_scheduled"></a></p><h3>Method <code>get_scheduled()</code></h3>
 <p>Get the individuals who are scheduled for a particular event</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$get_scheduled(event)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>get_scheduled</span>(<span class='no'>event</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>event, </code></dt><dd><p>the event of interest</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-clear_schedule"></a></p><h3>Method <code>clear_schedule()</code></h3>
 <p>Stop a future event from triggering for a subset of individuals</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$clear_schedule(event, target)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>clear_schedule</span>(<span class='no'>event</span>, <span class='no'>target</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>event</code></dt><dd><p>the event to stop</p></dd>
 
 <dt><code>target</code></dt><dd><p>the individuals to clear</p></dd>
@@ -263,20 +266,20 @@ fill options</p></dd>
 <p><hr>
 <a id="method-get_timestep"></a></p><h3>Method <code>get_timestep()</code></h3>
 <p>Get the current timestep of the simulation</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$get_timestep()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>get_timestep</span>()</pre><p></div></p>
 
 <p><hr>
 <a id="method-get_parameters"></a></p><h3>Method <code>get_parameters()</code></h3>
 <p>Get the parameters of the simulation</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$get_parameters()</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>get_parameters</span>()</pre><p></div></p>
 
 <p><hr>
 <a id="method-render"></a></p><h3>Method <code>render()</code></h3>
 <p>Add a value for the simulation output</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$render(name, value, timestep = NULL)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>render</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='kw'>timestep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>name</code></dt><dd><p>the column name</p></dd>
 
 <dt><code>value</code></dt><dd><p>the value to assign</p></dd>
@@ -287,10 +290,10 @@ fill options</p></dd>
 <p><hr>
 <a id="method-new"></a></p><h3>Method <code>new()</code></h3>
 <p>Create an R wrapper for the API</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$new(cpp_api, parameters, renderer)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>new</span>(<span class='no'>cpp_api</span>, <span class='no'>parameters</span>, <span class='no'>renderer</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>cpp_api</code></dt><dd><p>the cpp implementation of the simulation api</p></dd>
 
 <dt><code>parameters</code></dt><dd><p>model parameters</p></dd>
@@ -301,10 +304,10 @@ fill options</p></dd>
 <p><hr>
 <a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
-<p><div class="r"></p><pre>SimAPI$clone(deep = FALSE)</pre><p></div></p>
+<p><div class="r"></p><pre><span class='no'>SimAPI</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
 
 <h3>Arguments</h3>
-<p><div class="arguments"></p><dl class='dl-horizontal'>
+<p><div class="arguments"></p><dl'>
 <dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
 
 </dl><p></div></p>
@@ -312,12 +315,10 @@ fill options</p></dd>
 
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#methods">Methods</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -328,7 +329,7 @@ fill options</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
