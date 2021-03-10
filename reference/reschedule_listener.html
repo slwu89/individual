@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>create a listener to schedule a target population for a new event — reschedule_listener • individual</title>
+<title>Reschedule listener — reschedule_listener • individual</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="create a listener to schedule a target population for a new event — reschedule_listener" />
-<meta property="og:description" content="create a listener to schedule a target population for a new event" />
+<meta property="og:title" content="Reschedule listener — reschedule_listener" />
+<meta property="og:description" content="Schedules a followup event as the result of an event
+firing" />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -80,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,13 +96,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Modelling.html">Modelling</a>
+      <a href="../articles/API.html">API</a>
     </li>
     <li>
-      <a href="../articles/Performance.html">Performance</a>
-    </li>
-    <li>
-      <a href="../articles/Scheduling.html">Scheduling</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -121,27 +119,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>create a listener to schedule a target population for a new event</h1>
+    <h1>Reschedule listener</h1>
     
     <div class="hidden name"><code>reschedule_listener.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>create a listener to schedule a target population for a new event</p>
+    <p>Schedules a followup event as the result of an event
+firing</p>
     </div>
 
-    <pre class="usage"><span class='fu'>reschedule_listener</span>(<span class='no'>event</span>, <span class='no'>delay</span>)</pre>
+    <pre class="usage"><span class='fu'>reschedule_listener</span><span class='op'>(</span><span class='va'>event</span>, <span class='va'>delay</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>event</th>
-      <td><p>the name of the event to schedule</p></td>
+      <td><p>a <code><a href='TargetedEvent.html'>TargetedEvent</a></code></p></td>
     </tr>
     <tr>
       <th>delay</th>
-      <td><p>the delay for the new event</p></td>
+      <td><p>the delay until the follow-up event</p></td>
     </tr>
     </table>
 
@@ -161,7 +160,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

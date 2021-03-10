@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,13 +94,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Modelling.html">Modelling</a>
+      <a href="../articles/API.html">API</a>
     </li>
     <li>
-      <a href="../articles/Performance.html">Performance</a>
-    </li>
-    <li>
-      <a href="../articles/Scheduling.html">Scheduling</a>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
   </ul>
 </li>
@@ -146,17 +143,33 @@
       <tr>
         
         <td>
-          <p><code><a href="Event.html">Event</a></code> </p>
+          <p><code><a href="Bitset.html">Bitset</a></code> </p>
         </td>
-        <td><p>Class: Event
-Describes an event in the simulation</p></td>
+        <td><p>A Bitset Class</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="Individual.html">Individual</a></code> </p>
+          <p><code><a href="CategoricalVariable.html">CategoricalVariable</a></code> </p>
         </td>
-        <td><p>Class: Individual
-Represents an individual in our simulation</p></td>
+        <td><p>Categorical Variable Class</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="DoubleVariable.html">DoubleVariable</a></code> </p>
+        </td>
+        <td><p>DoubleVariable Class</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="Event.html">Event</a></code> </p>
+        </td>
+        <td><p>Event Class</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="IntegerVariable.html">IntegerVariable</a></code> </p>
+        </td>
+        <td><p>Integer Variable Class</p></td>
       </tr><tr>
         
         <td>
@@ -167,66 +180,63 @@ Class to render output for the simulation</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="SimAPI.html">SimAPI</a></code> </p>
+          <p><code><a href="TargetedEvent.html">TargetedEvent</a></code> </p>
         </td>
-        <td><p>Class: SimAPI
-The entry point for models to inspect and manipulate the simulation</p></td>
+        <td><p>TargetedEvent Class</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="State.html">State</a></code> </p>
+          <p><code><a href="bernoulli_process.html">bernoulli_process()</a></code> </p>
         </td>
-        <td><p>Class: State
-Represents a state for an individual in our simulation</p></td>
+        <td><p>Bernoulli process</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="Variable.html">Variable</a></code> </p>
+          <p><code><a href="categorical_count_renderer_process.html">categorical_count_renderer_process()</a></code> </p>
         </td>
-        <td><p>Class: Variable
-Represents a variable for an individual in our simulation</p></td>
+        <td><p>Render Categories</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="execute_any_process.html">execute_any_process()</a></code> </p>
+          <p><code><a href="filter_bitset.html">filter_bitset()</a></code> </p>
         </td>
-        <td><p>Execute a cpp or R process in the simulation</p></td>
+        <td><p>Filter a bitset</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="fixed_probability_state_change_process.html">fixed_probability_state_change_process()</a></code> </p>
+          <p><code><a href="fixed_probability_multinomial_process.html">fixed_probability_multinomial_process()</a></code> </p>
         </td>
-        <td><p>create a process to transition individuals between states at a constant rate</p></td>
+        <td><p>Multinomial process</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="multi_probability_bernoulli_process.html">multi_probability_bernoulli_process()</a></code> </p>
+        </td>
+        <td><p>Overdispersed Bernoulli process</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="multi_probability_multinomial_process.html">multi_probability_multinomial_process()</a></code> </p>
+        </td>
+        <td><p>Overdispersed multinomial process</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="reschedule_listener.html">reschedule_listener()</a></code> </p>
         </td>
-        <td><p>create a listener to schedule a target population for a new event</p></td>
+        <td><p>Reschedule listener</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="simulate.html">simulate()</a></code> </p>
+          <p><code><a href="simulation_loop.html">simulation_loop()</a></code> </p>
         </td>
-        <td><p>Main simulation loop</p></td>
+        <td><p>A premade simulation loop</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="state_count_renderer_process.html">state_count_renderer_process()</a></code> </p>
+          <p><code><a href="update_category_listener.html">update_category_listener()</a></code> </p>
         </td>
-        <td><p>create a process to render the number of individuals in the specified states</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="update_state_listener.html">update_state_listener()</a></code> </p>
-        </td>
-        <td><p>create a listener to update the state of the target population</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="variable_mean_renderer_process.html">variable_mean_renderer_process()</a></code> </p>
-        </td>
-        <td><p>create a process to render the mean value of the specified variables</p></td>
+        <td><p>Update category listener</p></td>
       </tr>
     </tbody>
     </table>
@@ -246,7 +256,7 @@ Represents a variable for an individual in our simulation</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: Render
-Class to render output for the simulation — Render • individual</title>
+<title>Categorical Variable Class — CategoricalVariable • individual</title>
 
 
 <!-- jquery -->
@@ -40,12 +39,12 @@ Class to render output for the simulation — Render • individual</title>
 
 
 
-<meta property="og:title" content="Class: Render
-Class to render output for the simulation — Render" />
-<meta property="og:description" content="Class: Render
-Class to render output for the simulation
-Class: Render
-Class to render output for the simulation" />
+<meta property="og:title" content="Categorical Variable Class — CategoricalVariable" />
+<meta property="og:description" content="Represents a categorical variable for an individual.
+This class should be used for discrete variables taking values in 
+a finite set, such as infection, health, or behavioral state. It should
+be used in preference to IntegerVariable
+if possible becuase certain operations will be faster." />
 
 
 
@@ -123,17 +122,17 @@ Class to render output for the simulation" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class: Render
-Class to render output for the simulation</h1>
+    <h1>Categorical Variable Class</h1>
     
-    <div class="hidden name"><code>Render.Rd</code></div>
+    <div class="hidden name"><code>CategoricalVariable.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class: Render
-Class to render output for the simulation</p>
-<p>Class: Render
-Class to render output for the simulation</p>
+    <p>Represents a categorical variable for an individual.
+This class should be used for discrete variables taking values in 
+a finite set, such as infection, health, or behavioral state. It should
+be used in preference to <code><a href='IntegerVariable.html'>IntegerVariable</a></code>
+if possible becuase certain operations will be faster.</p>
     </div>
 
 
@@ -144,51 +143,70 @@ Class to render output for the simulation</p>
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>Render$new()</code></a></p></li>
-<li><p><a href='#method-render'><code>Render$render()</code></a></p></li>
-<li><p><a href='#method-to_dataframe'><code>Render$to_dataframe()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Render$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>CategoricalVariable$new()</code></a></p></li>
+<li><p><a href='#method-get_index_of'><code>CategoricalVariable$get_index_of()</code></a></p></li>
+<li><p><a href='#method-get_size_of'><code>CategoricalVariable$get_size_of()</code></a></p></li>
+<li><p><a href='#method-queue_update'><code>CategoricalVariable$queue_update()</code></a></p></li>
+<li><p><a href='#method-.update'><code>CategoricalVariable$.update()</code></a></p></li>
+<li><p><a href='#method-clone'><code>CategoricalVariable$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Initialise a renderer for the simulation, creates the default state
-renderers</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>timesteps</span><span class='op'>)</span></pre><p></div></p>
+<p>Create a new CategoricalVariable</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>categories</span>, <span class='va'>initial_values</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>timesteps</code></dt><dd><p>number of timesteps in the simulation</p></dd>
+<dt><code>categories</code></dt><dd><p>a character vector of possible values</p></dd>
 
-<dt><code>individuals</code></dt><dd><p>to render states for</p></dd>
-
-<dt><code>renderers</code></dt><dd><p>additional renderers to execute. Renderers are functions
-which take a SimFrame as an argument and return a list of
-scalar outputs to store to the final render</p></dd>
+<dt><code>initial_values</code></dt><dd><p>a character vector of the initial value for each
+individual</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-render"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>render()</code></h3>
-<p>Update the render with new simulation data</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>render</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>value</span>, <span class='va'>timestep</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_index_of"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_index_of()</code></h3>
+<p>return a <code><a href='Bitset.html'>Bitset</a></code> for individuals with the given `values`</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>get_index_of</span><span class='op'>(</span><span class='va'>values</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>name</code></dt><dd><p>the variable to render</p></dd>
-
-<dt><code>value</code></dt><dd><p>the value to store for the variable</p></dd>
-
-<dt><code>timestep</code></dt><dd><p>the timestep of the data point</p></dd>
+<dt><code>values</code></dt><dd><p>the values to filter</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-to_dataframe"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>to_dataframe()</code></h3>
-<p>Make a dataframe for the render</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>to_dataframe</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_size_of"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_size_of()</code></h3>
+<p>return the number of individuals with the given `values`</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>get_size_of</span><span class='op'>(</span><span class='va'>values</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>values</code></dt><dd><p>the values to filter</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-queue_update"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>queue_update()</code></h3>
+<p>queue an update for this variable</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>queue_update</span><span class='op'>(</span><span class='va'>value</span>, <span class='va'>index</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>index</code></dt><dd><p>the indices of individuals whose value will be updated
+to the one specified in <code>values</code>. This may be either a vector of integers or
+a <code><a href='Bitset.html'>Bitset</a></code>.</p></dd>
+
+<dt><code>values</code></dt><dd><p>the new values</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-.update"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.update()</code></h3>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>.update</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>CategoricalVariable</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>

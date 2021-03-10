@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Event Class — Event • individual</title>
+<title>DoubleVariable Class — DoubleVariable • individual</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Event Class — Event" />
-<meta property="og:description" content="Describes a general event in the simulation" />
+<meta property="og:title" content="DoubleVariable Class — DoubleVariable" />
+<meta property="og:description" content="Represents a continuous variable for an individual in our simulation" />
 
 
 
@@ -118,13 +118,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Event Class</h1>
+    <h1>DoubleVariable Class</h1>
     
-    <div class="hidden name"><code>Event.Rd</code></div>
+    <div class="hidden name"><code>DoubleVariable.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Describes a general event in the simulation</p>
+    <p>Represents a continuous variable for an individual in our simulation</p>
     </div>
 
 
@@ -135,80 +135,98 @@
 <h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Public methods</h3>
 
 <ul>
-<li><p><a href='#method-new'><code>Event$new()</code></a></p></li>
-<li><p><a href='#method-add_listener'><code>Event$add_listener()</code></a></p></li>
-<li><p><a href='#method-schedule'><code>Event$schedule()</code></a></p></li>
-<li><p><a href='#method-clear_schedule'><code>Event$clear_schedule()</code></a></p></li>
-<li><p><a href='#method-.tick'><code>Event$.tick()</code></a></p></li>
-<li><p><a href='#method-.process'><code>Event$.process()</code></a></p></li>
-<li><p><a href='#method-.process_listener'><code>Event$.process_listener()</code></a></p></li>
-<li><p><a href='#method-.process_listener_cpp'><code>Event$.process_listener_cpp()</code></a></p></li>
-<li><p><a href='#method-clone'><code>Event$clone()</code></a></p></li>
+<li><p><a href='#method-new'><code>DoubleVariable$new()</code></a></p></li>
+<li><p><a href='#method-get_values'><code>DoubleVariable$get_values()</code></a></p></li>
+<li><p><a href='#method-get_index_of'><code>DoubleVariable$get_index_of()</code></a></p></li>
+<li><p><a href='#method-get_size_of'><code>DoubleVariable$get_size_of()</code></a></p></li>
+<li><p><a href='#method-queue_update'><code>DoubleVariable$queue_update()</code></a></p></li>
+<li><p><a href='#method-.update'><code>DoubleVariable$.update()</code></a></p></li>
+<li><p><a href='#method-clone'><code>DoubleVariable$clone()</code></a></p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Initialise an Event</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+<p>Create a new DoubleVariable</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>initial_values</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>name, </code></dt><dd><p>the name of the event</p></dd>
+<dt><code>initial_values</code></dt><dd><p>a numeric vector of the initial value for each
+individual</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-add_listener"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>add_listener()</code></h3>
-<p>Add an event listener</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>add_listener</span><span class='op'>(</span><span class='va'>listener</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_values"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_values()</code></h3>
+<p>get the variable values</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>get_values</span><span class='op'>(</span>index <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>listener</code></dt><dd><p>the function to be executed on the event</p></dd>
+<dt><code>index</code></dt><dd><p>optionally return a subset of the variable vector. If
+<code>NULL</code>, return all values; if passed a <code><a href='Bitset.html'>Bitset</a></code>
+or integer vector, return values of those individuals.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-schedule"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>schedule()</code></h3>
-<p>schedule this event to occur in the future</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>schedule</span><span class='op'>(</span><span class='va'>delay</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_index_of"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_index_of()</code></h3>
+<p>return a <code><a href='Bitset.html'>Bitset</a></code> giving individuals 
+whose value lies in an interval
+Search for indices corresponding to values in the interval [a,b].</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>get_index_of</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>delay</code></dt><dd><p>the number of timesteps to wait before triggering the event,
-can be a scalar or an vector of values for several times in the future</p></dd>
+<dt><code>a</code></dt><dd><p>lower bound</p></dd>
+
+<dt><code>b</code></dt><dd><p>upper bound</p></dd>
 
 </dl><p></div></p>
 <p><hr>
-<a id="method-clear_schedule"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clear_schedule()</code></h3>
-<p>Stop a future event from triggering</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>clear_schedule</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
+<a id="method-get_size_of"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_size_of()</code></h3>
+<p>return the number of individuals whose value lies in an interval
+Count individuals whose value lies in the interval [a,b].</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>get_size_of</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span><span class='op'>)</span></pre><p></div></p>
 
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>a</code></dt><dd><p>lower bound</p></dd>
+
+<dt><code>b</code></dt><dd><p>upper bound</p></dd>
+
+</dl><p></div></p>
 <p><hr>
-<a id="method-.tick"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.tick()</code></h3>
+<a id="method-queue_update"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>queue_update()</code></h3>
+<p>Queue an update for a variable. There are 4 types of variable update:</p>
+<p>1. Subset update. The index vector represents a subset of the variable to
+update. The value vector, of the same size, represents the new values for
+that subset
+2. Subset fill. The index vector represents a subset of the variable to
+update. The value vector, of size 1, will fill the specified subset
+3. Variable reset. The index vector is set to <code>NULL</code> and the value vector
+replaces all of the current values in the simulation. The value vector is
+should match the size of the population.
+4. Variable fill. The index vector is set to <code>NULL</code> and the value vector,
+of size 1, is used to fill all of the variable values in the population.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>queue_update</span><span class='op'>(</span><span class='va'>values</span>, index <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre><p></div></p>
+
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>values</code></dt><dd><p>a vector or scalar of values to assign at the index</p></dd>
+
+<dt><code>index</code></dt><dd><p>is the index at which to apply the change, use <code>NULL</code> for the
+fill options. If using indices, this may be either a vector of integers or
+a <code><a href='Bitset.html'>Bitset</a></code>.</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-.update"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.update()</code></h3>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>.tick</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
-
-<p><hr>
-<a id="method-.process"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.process()</code></h3>
-
-<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>.process</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
-
-<p><hr>
-<a id="method-.process_listener"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.process_listener()</code></h3>
-
-<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>.process_listener</span><span class='op'>(</span><span class='va'>listener</span><span class='op'>)</span></pre><p></div></p>
-
-<p><hr>
-<a id="method-.process_listener_cpp"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>.process_listener_cpp()</code></h3>
-
-<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>.process_listener_cpp</span><span class='op'>(</span><span class='va'>listener</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>.update</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
 <a id="method-clone"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>clone()</code></h3>
 <p>The objects of this class are cloneable with this method.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
-<p><div class="r"></p><pre><span class='va'>Event</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
+<p><div class="r"></p><pre><span class='va'>DoubleVariable</span><span class='op'>$</span><span class='fu'>clone</span><span class='op'>(</span>deep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
