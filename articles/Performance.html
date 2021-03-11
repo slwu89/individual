@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -54,13 +54,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Modelling.html">Modelling</a>
+      <a href="../articles/API.html">API</a>
+    </li>
+    <li>
+      <a href="../articles/Contributing.html">Contributing</a>
     </li>
     <li>
       <a href="../articles/Performance.html">Performance</a>
     </li>
     <li>
-      <a href="../articles/Scheduling.html">Scheduling</a>
+      <a href="../articles/Tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -75,7 +78,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="Performance_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Performance</h1>
@@ -88,121 +91,104 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">individual</span>)</pre></body></html></div>
-<div id="running-big-models" class="section level2">
+<div id="intro" class="section level2">
 <h2 class="hasAnchor">
-<a href="#running-big-models" class="anchor"></a>Running big models</h2>
-<p>“individual” is designed for running big individual-based models. But if you find your model taking too long or consuming all of your memory, here are a few performance considerations:</p>
-<p>###1. Use prefabs</p>
-<p>Every time your processes ask for the state or a variable, there is an overhead associated with copying simulation data into R land. Imagine you have the model below:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># Our model</span>
-<span class="no">population</span> <span class="kw">&lt;-</span> <span class="fl">100000</span>
-<span class="no">timesteps</span> <span class="kw">&lt;-</span> <span class="fl">100</span>
-<span class="no">S</span> <span class="kw">&lt;-</span> <span class="no">State</span>$<span class="fu">new</span>(<span class="st">'S'</span>, <span class="no">population</span>/<span class="fl">2</span>)
-<span class="no">I</span> <span class="kw">&lt;-</span> <span class="no">State</span>$<span class="fu">new</span>(<span class="st">'I'</span>, <span class="no">population</span>/<span class="fl">2</span>)
-<span class="no">R</span> <span class="kw">&lt;-</span> <span class="no">State</span>$<span class="fu">new</span>(<span class="st">'R'</span>, <span class="fl">0</span>)
-<span class="no">immunity</span> <span class="kw">&lt;-</span> <span class="no">Variable</span>$<span class="fu">new</span>(<span class="st">'immunity'</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="no">population</span>, <span class="fl">0</span>, <span class="fl">1</span>))
-<span class="no">human</span> <span class="kw">&lt;-</span> <span class="no">Individual</span>$<span class="fu">new</span>(<span class="st">'human'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">S</span>, <span class="no">I</span>, <span class="no">R</span>), <span class="kw">variables</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">immunity</span>))
-
-<span class="no">infection</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">api</span>) {
-  <span class="no">from_state</span> <span class="kw">&lt;-</span> <span class="no">api</span>$<span class="fu">get_state</span>(<span class="no">human</span>, <span class="no">S</span>)
-  <span class="co"># Get the immunity for susceptable humans and use the complement to modify the</span>
-  <span class="co"># infection rate</span>
-  <span class="no">rate_modifier</span> <span class="kw">&lt;-</span> <span class="fl">1</span> - <span class="no">api</span>$<span class="fu">get_variable</span>(<span class="no">human</span>, <span class="no">immunity</span>)[<span class="no">from_state</span>]
-  <span class="no">rate</span> <span class="kw">&lt;-</span> <span class="fl">.3</span>
-  <span class="no">api</span>$<span class="fu">queue_state_update</span>(
-    <span class="no">human</span>,
-    <span class="no">I</span>,
-    <span class="no">from_state</span>[<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">from_state</span>)) <span class="kw">&lt;</span> (<span class="no">rate</span> * <span class="no">rate_modifier</span>)]
-  )
-}
-
-<span class="no">random_transition_generator</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">from</span>, <span class="no">to</span>, <span class="no">rate</span>) {
-  <span class="kw">function</span>(<span class="no">api</span>) {
-    <span class="no">from_state</span> <span class="kw">&lt;-</span> <span class="no">api</span>$<span class="fu">get_state</span>(<span class="no">human</span>, <span class="no">from</span>)
-    <span class="no">api</span>$<span class="fu">queue_state_update</span>(
-      <span class="no">human</span>,
-      <span class="no">to</span>,
-      <span class="no">from_state</span>[<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">from_state</span>)) <span class="kw">&lt;</span> <span class="no">rate</span>]
-    )
-  }
-}
-
-<span class="no">render_state_sizes</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">api</span>) {
-  <span class="no">api</span>$<span class="fu">render</span>(<span class="st">'infected_counts'</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">api</span>$<span class="fu">get_state</span>(<span class="no">human</span>, <span class="no">I</span>)))
-  <span class="no">api</span>$<span class="fu">render</span>(<span class="st">'susceptable_counts'</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">api</span>$<span class="fu">get_state</span>(<span class="no">human</span>, <span class="no">S</span>)))
-  <span class="no">api</span>$<span class="fu">render</span>(<span class="st">'recovered_counts'</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">api</span>$<span class="fu">get_state</span>(<span class="no">human</span>, <span class="no">R</span>)))
-}
-
-<span class="no">processes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="no">infection</span>,
-  <span class="fu">random_transition_generator</span>(<span class="no">I</span>, <span class="no">R</span>, <span class="fl">.5</span>),
-  <span class="fu">random_transition_generator</span>(<span class="no">R</span>, <span class="no">S</span>, <span class="fl">.1</span>),
-  <span class="no">render_state_sizes</span>
-)
-
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/individual/man/simulate.html">simulate</a></span>(<span class="no">human</span>, <span class="no">processes</span>, <span class="no">timesteps</span>))
-<span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.749   0.012   0.767</span></pre></body></html></div>
-<p>A lot of epidemiology models are quite similar. We’ve included some optimised, reusable processes and event listeners that provide significant speed improvements with very little effort:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">processes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="no">infection</span>,
-  <span class="kw pkg">individual</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/individual/man/fixed_probability_state_change_process.html">fixed_probability_state_change_process</a></span>(<span class="no">human</span>$<span class="no">name</span>, <span class="no">I</span>$<span class="no">name</span>, <span class="no">R</span>$<span class="no">name</span>, <span class="fl">.5</span>),
-  <span class="kw pkg">individual</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/individual/man/fixed_probability_state_change_process.html">fixed_probability_state_change_process</a></span>(<span class="no">human</span>$<span class="no">name</span>, <span class="no">R</span>$<span class="no">name</span>, <span class="no">S</span>$<span class="no">name</span>, <span class="fl">.1</span>),
-  <span class="kw pkg">individual</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/individual/man/state_count_renderer_process.html">state_count_renderer_process</a></span>(<span class="no">human</span>$<span class="no">name</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">S</span>$<span class="no">name</span>, <span class="no">I</span>$<span class="no">name</span>, <span class="no">R</span>$<span class="no">name</span>))
-)
-
-<span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/individual/man/simulate.html">simulate</a></span>(<span class="no">human</span>, <span class="no">processes</span>, <span class="no">timesteps</span>))
-<span class="co">#&gt;    user  system elapsed </span>
-<span class="co">#&gt;   0.465   0.001   0.469</span></pre></body></html></div>
-<p>###2. Write your processes in C++</p>
+<a href="#intro" class="anchor"></a>Introduction</h2>
+<p>The “individual” package is designed for running big individual-based models. But if you find your model taking too long or consuming all of your memory, here are some things you can try to speed up your simulation.</p>
+<div id="bitset" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bitset" class="anchor"></a>Bitset</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Bit_array">bitset</a> data structure used to store categorical state information, <code><a href="../reference/Bitset.html">individual::Bitset</a></code> is able to preform set operations extremely quickly using <a href="https://en.wikipedia.org/wiki/Bitwise_operation">bitwise operations</a>. Taking advantage of these operations can lead to very fast processes, when you need to find some particular subset of individuals.</p>
+<p>Let’s take a look at the recovery process in <code><a href="../articles/Tutorial.html">vignette("Tutorial")</a></code>. A crucial operation here is to get all infectious individuals who are not already scheduled for recovery. The object <code>I</code> is a bitset containing all those individuals currently infectious, and <code>already_scheduled</code> is another bitset containing those individuals scheduled for a recovery event. Using <code>already_scheduled$not()</code> returns a new bitset of those individuals <em>not</em> in the set of already scheduled persons. This is passed to the <code>I$and()</code>, which modifies <code>I</code> in-place so that the result is the intersection of currently infectious persons and persons who have no yet been scheduled for a recovery event, which is precisely the set of people we want.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">recovery_process</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">I</span> <span class="op">&lt;-</span> <span class="va">health</span><span class="op">$</span><span class="fu">get_index_of</span><span class="op">(</span><span class="st">"I"</span><span class="op">)</span>
+  <span class="va">already_scheduled</span> <span class="op">&lt;-</span> <span class="va">recovery_event</span><span class="op">$</span><span class="fu">get_scheduled</span><span class="op">(</span><span class="op">)</span>
+  <span class="va">I</span><span class="op">$</span><span class="fu">and</span><span class="op">(</span><span class="va">already_scheduled</span><span class="op">$</span><span class="fu">not</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">rec_times</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Geometric.html">rgeom</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">I</span><span class="op">$</span><span class="fu">size</span><span class="op">(</span><span class="op">)</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">gamma</span> <span class="op">*</span> <span class="va">dt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>
+  <span class="va">recovery_event</span><span class="op">$</span><span class="fu">schedule</span><span class="op">(</span>target <span class="op">=</span> <span class="va">I</span>,delay <span class="op">=</span> <span class="va">rec_times</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Bitsets can also be efficiently sampled using <code>Bitset$sample()</code>. This is used in the infection process of <code><a href="../articles/Tutorial.html">vignette("Tutorial")</a></code>. Once the per-capita force of infection (probability of moving from S to I during this time step) is calculated, the bitset <code>S</code> is sampled with that probability which modifies it in-place. The number of elements remaining after being sampled is binomially distributed. The argument <code>rate</code> can also be specified as a vector of probabilities, one for each element in the bitset.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">infection_process</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">I</span> <span class="op">&lt;-</span> <span class="va">health</span><span class="op">$</span><span class="fu">get_size_of</span><span class="op">(</span><span class="st">"I"</span><span class="op">)</span>
+  <span class="va">foi</span> <span class="op">&lt;-</span> <span class="va">beta</span> <span class="op">*</span> <span class="va">I</span><span class="op">/</span><span class="va">N</span>
+  <span class="va">S</span> <span class="op">&lt;-</span> <span class="va">health</span><span class="op">$</span><span class="fu">get_index_of</span><span class="op">(</span><span class="st">"S"</span><span class="op">)</span>
+  <span class="va">S</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span>rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">pexp</a></span><span class="op">(</span>q <span class="op">=</span> <span class="va">foi</span> <span class="op">*</span> <span class="va">dt</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">health</span><span class="op">$</span><span class="fu">queue_update</span><span class="op">(</span>value <span class="op">=</span> <span class="st">"I"</span>,index <span class="op">=</span> <span class="va">S</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Bitsets offer methods to preform unions (<code>Bitset$or()</code>) and intersections (<code>Bitset$and()</code>) with other bitsets. These two methods modify the bitset in-place. The method <code>Bitset$not()</code> gives the complement of a bitset, and returns a new <code><a href="../reference/Bitset.html">individual::Bitset</a></code> object, leaving the original bitset intact. Insertion and removal of elements is also supported. Making good use of these bitset operations can help make processes in “individual” much faster.</p>
+</div>
+<div id="prefab" class="section level3">
+<h3 class="hasAnchor">
+<a href="#prefab" class="anchor"></a>Prefabs</h3>
+<p>Every time your processes ask for a variable, there is an overhead associated with moving simulation data into R, potentially incurring expensive copying of data.</p>
+<p>Because many epidemiological models have similar state transitions, we’ve included several “prefab” processes and event listeners which provide significant speed improvements and can be used out of the box in models. The processes available are:</p>
+<ul>
+<li>
+<code><a href="../reference/bernoulli_process.html">individual::bernoulli_process</a></code>: moves individuals from one categorical variable state to another at a constant probability</li>
+<li>
+<code><a href="../reference/multi_probability_bernoulli_process.html">individual::multi_probability_bernoulli_process</a></code>: moves individuals from one categorical variable state to another at a individual level probability specified by a <code><a href="../reference/DoubleVariable.html">individual::DoubleVariable</a></code> object</li>
+<li>
+<code><a href="../reference/fixed_probability_multinomial_process.html">individual::fixed_probability_multinomial_process</a></code>: moves individuals from one categorical variable state to a set of possible destination values with constant probability to leave and multinomially distributed choice of destination state.</li>
+<li>
+<code><a href="../reference/multi_probability_multinomial_process.html">individual::multi_probability_multinomial_process</a></code>: moves individuals from one categorical variable state to a set of possible destination values with individual level probability to leave specified by a <code><a href="../reference/DoubleVariable.html">individual::DoubleVariable</a></code> object and multinomially distributed choice of destination state.</li>
+<li>
+<code><a href="../reference/update_category_listener.html">individual::update_category_listener</a></code>: event listener for <code><a href="../reference/TargetedEvent.html">individual::TargetedEvent</a></code> objects which updates the categorical variable state when it fires.</li>
+<li>
+<code><a href="../reference/reschedule_listener.html">individual::reschedule_listener</a></code>: event listener for <code><a href="../reference/TargetedEvent.html">individual::TargetedEvent</a></code> objects which schedules some new followup event when it fires.</li>
+<li>
+<code><a href="../reference/categorical_count_renderer_process.html">individual::categorical_count_renderer_process</a></code>: used for <code><a href="../reference/Render.html">individual::Render</a></code> objects that counts the size of each state in a categorical variable.</li>
+</ul>
+</div>
+<div id="cpp_prefab" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cpp_prefab" class="anchor"></a>C++ Prefabs</h3>
 <p>Unfortunately, we don’t have a prefab for every situation. Please feel free to write one of your own!</p>
 <p>These are the basic steps to add C++ processes to your R package:</p>
 <ol style="list-style-type: decimal">
-<li>Run <code>use_rcpp</code> to set your package up for C++ development</li>
+<li>Run <code>usethis::use_rcpp</code> to set your package up for C++ development</li>
 <li>Add <code>individual</code> to the <code>LinkingTo</code> section of your package DESCRIPTION</li>
 <li>Write your process</li>
 </ol>
-<p>Processes in C++ are of type <code>Rcpp::XPtr&lt;process_t&gt;</code>. Once you’ve passed your process to R land, you can configure it as usual.</p>
-<p>C++ processes program against the <code>ProcessAPI</code> class, which mirrors the R API (but is much more efficient). Below is an example of how you could translate the <code>infection</code> process:</p>
-<pre><code>#include &lt;individual.h&gt;
-#include &lt;Rcpp.h&gt;
-
-//[[Rcpp::export]]
-Rcpp::XPtr&lt;process_t&gt; infection_cpp(
-    const std::string human,
-    const std::string S,
-    const std::string I,
-    const std::string immunity
-    double rate
-    ) {
-    return Rcpp::XPtr&lt;process_t&gt;(
-        new process_t([=] (ProcessAPI&amp; api) {
-              const auto&amp; susceptable = api.get_state(human, S);
-              const auto&amp; immunity_values = api.get_variable(human, immunity);
-              const auto uniform = Rcpp::runif();
-              auto target = individual_index_t();
-              for (auto s : susceptable) {
-                if (uniform &lt; ((1 - immunity_values[s]) * rate)) {
-                  target.insert(s);
-                }
-              }
-              api.queue_state_update(human, I, target);
-        }),
-        true
-    );
-}</code></pre>
-<p>The infection function is only a few extra lines and is likely to have a large speed improvement. Calls to <code>ProcessAPI</code> avoid copying any data by returning <code>const&amp;</code> to simulation data structures.</p>
-<p>You can pull your process into R land and configure your process like so:</p>
-<pre><code>processes &lt;- list(
-  infection_cpp(human$name, S$name, I$name, immunity$name, .3),
-  random_transition_generator(I, R, .5),
-  random_transition_generator(R, S, .1),
-  render_state_sizes
-)
-
-simulate(human, processes, timesteps)</code></pre>
+<p>Processes in C++ are of type <code>Rcpp::XPtr&lt;process_t&gt;</code>, defined in <code>common_types.h</code>. Types for listeners for <code><a href="../reference/Event.html">individual::Event</a></code> and <code><a href="../reference/TargetedEvent.html">individual::TargetedEvent</a></code> are <code>listener_t</code> and <code>targeted_listener_t</code>, defined in <code>Event.h</code>. Below is how the C++ implementation of <code>multi_probability_bernoulli_process</code> is coded.</p>
+<p>Note that the return type is a <code>Rcpp::XPtr</code> <a href="https://dirk.eddelbuettel.com/code/rcpp/html/classRcpp_1_1XPtr.html">(see here)</a> to a <code>process_t</code>, which is implemented as a <code>std::function</code> <a href="http://www.cplusplus.com/reference/functional/function/">(see here)</a> object, a C++ class that can hold any callable type. The <code>Rcpp::XPtr</code> is initialized with a pointer to a <code>process_t</code> object, which itself holds a C++ <a href="https://en.cppreference.com/w/cpp/language/lambda">lambda function</a>, basically a function closure.</p>
+<p>The lambda function captures the input arguments by value, and takes a single argument when called <code>t</code>, giving the current time step (just like process functions in R). Sampling those individuals to change state is implemented with the C++ API for these objects.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;individual.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>Rcpp::XPtr&lt;<span class="dt">process_t</span>&gt; multi_probability_bernoulli_process_cpp(</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    Rcpp::XPtr&lt;CategoricalVariable&gt; variable,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">const</span> <span class="bu">std::</span>string from,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">const</span> <span class="bu">std::</span>string to,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">const</span> Rcpp::XPtr&lt;DoubleVariable&gt; rate_variable</span>
+<span id="cb3-10"><a href="#cb3-10"></a>){</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="co">// make pointer to lambda function and return XPtr to R</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="cf">return</span> Rcpp::XPtr&lt;<span class="dt">process_t</span>&gt;(</span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="kw">new</span> <span class="dt">process_t</span>([variable,rate_variable,from,to](<span class="dt">size_t</span> t){      </span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a>            <span class="co">// sample leavers with their unique prob</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>            <span class="dt">individual_index_t</span> leaving_individuals(variable-&gt;get_index_of(<span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt;{from}));</span>
+<span id="cb3-18"><a href="#cb3-18"></a>            <span class="bu">std::</span>vector&lt;<span class="dt">double</span>&gt; rate_vector = rate_variable-&gt;get_values(leaving_individuals);</span>
+<span id="cb3-19"><a href="#cb3-19"></a>            bitset_sample_multi_internal(leaving_individuals, rate_vector.begin(), rate_vector.end());</span>
+<span id="cb3-20"><a href="#cb3-20"></a></span>
+<span id="cb3-21"><a href="#cb3-21"></a>            variable-&gt;queue_update(to, leaving_individuals);</span>
+<span id="cb3-22"><a href="#cb3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23"></a>        }),</span>
+<span id="cb3-24"><a href="#cb3-24"></a>        <span class="kw">true</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>    ); </span>
+<span id="cb3-26"><a href="#cb3-26"></a>};</span></code></pre></div>
+<p>The exported function can be used normally in R when creating the list of processes:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">processes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  <span class="fu">multi_probability_bernoulli_process_cpp</span><span class="op">(</span><span class="va">state</span>, <span class="st">"I"</span>, <span class="st">"R"</span>, <span class="va">prob</span><span class="op">)</span>,
+  <span class="va">other_process_1</span>,
+  <span class="va">other_process_2</span>
+<span class="op">)</span></code></pre></div>
 <p>That’s everything you need to scale your models up to millions of individuals!</p>
+</div>
 </div>
   </div>
 
@@ -221,7 +207,7 @@ simulate(human, processes, timesteps)</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
