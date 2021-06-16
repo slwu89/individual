@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="TargetedEvent Class — TargetedEvent" />
 <meta property="og:description" content="Describes a targeted event in the simulation
-This is useful for events which are triggered for a sub-population" />
+This is useful for events which are triggered for a sub-population." />
 
 
 
@@ -73,7 +73,7 @@ This is useful for events which are triggered for a sub-population" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ This is useful for events which are triggered for a sub-population" />
 
     <div class="ref-description">
     <p>Describes a targeted event in the simulation
-This is useful for events which are triggered for a sub-population</p>
+This is useful for events which are triggered for a sub-population.</p>
     </div>
 
 
@@ -164,17 +164,17 @@ This is useful for events which are triggered for a sub-population</p>
 
 <hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>Initialise a Triggered event</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>Initialise a TargetedEvent</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>TargetedEvent</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>population_size</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>population_size</code></dt><dd><p>the size of the target population</p></dd>
+<dt><code>population_size</code></dt><dd><p>the size of the population</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-schedule"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>schedule()</code></h3>
-<p>schedule this event to occur in the future</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>Schedule this event to occur in the future</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>TargetedEvent</span><span class='op'>$</span><span class='fu'>schedule</span><span class='op'>(</span><span class='va'>target</span>, <span class='va'>delay</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
@@ -182,13 +182,14 @@ This is useful for events which are triggered for a sub-population</p>
 <dt><code>target</code></dt><dd><p>the individuals to pass to the listener, this may be 
 either a vector of integers or a <code><a href='Bitset.html'>Bitset</a></code>.</p></dd>
 
-<dt><code>delay</code></dt><dd><p>the number of timesteps to wait before triggering the event,
-can be a scalar or a vector of values for each target individual</p></dd>
+<dt><code>delay</code></dt><dd><p>the number of time steps to wait before triggering the event,
+can be a scalar or an vector of values for events that should be triggered
+multiple times, fore each targeted individual.</p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-get_scheduled"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>get_scheduled()</code></h3>
-<p>Get the individuals who are scheduled</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>Get the individuals who are scheduled as a <code><a href='Bitset.html'>Bitset</a></code>.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>TargetedEvent</span><span class='op'>$</span><span class='fu'>get_scheduled</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
@@ -238,7 +239,7 @@ a <code><a href='Bitset.html'>Bitset</a></code>.</p></dd>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Giovanni Charles.</p>
+  <p>Developed by Giovanni Charles, Sean L. Wu, Pete Winskill.</p>
 </div>
 
 <div class="pkgdown">

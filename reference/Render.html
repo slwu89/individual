@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class: Render
-Class to render output for the simulation — Render • individual</title>
+<title>Render — Render • individual</title>
 
 
 <!-- jquery -->
@@ -40,12 +39,8 @@ Class to render output for the simulation — Render • individual</title>
 
 
 
-<meta property="og:title" content="Class: Render
-Class to render output for the simulation — Render" />
-<meta property="og:description" content="Class: Render
-Class to render output for the simulation
-Class: Render
-Class to render output for the simulation" />
+<meta property="og:title" content="Render — Render" />
+<meta property="og:description" content="Class to render output for the simulation" />
 
 
 
@@ -77,7 +72,7 @@ Class to render output for the simulation" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">individual</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -129,17 +124,13 @@ Class to render output for the simulation" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Class: Render
-Class to render output for the simulation</h1>
+    <h1>Render</h1>
     
     <div class="hidden name"><code>Render.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class: Render
-Class to render output for the simulation</p>
-<p>Class: Render
-Class to render output for the simulation</p>
+    <p>Class to render output for the simulation</p>
     </div>
 
 
@@ -151,6 +142,7 @@ Class to render output for the simulation</p>
 
 <ul>
 <li><p><a href='#method-new'><code>Render$new()</code></a></p></li>
+<li><p><a href='#method-set_default'><code>Render$set_default()</code></a></p></li>
 <li><p><a href='#method-render'><code>Render$render()</code></a></p></li>
 <li><p><a href='#method-to_dataframe'><code>Render$to_dataframe()</code></a></p></li>
 <li><p><a href='#method-clone'><code>Render$clone()</code></a></p></li>
@@ -165,11 +157,18 @@ renderers</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#argum
 <p><div class="arguments"></p><dl>
 <dt><code>timesteps</code></dt><dd><p>number of timesteps in the simulation</p></dd>
 
-<dt><code>individuals</code></dt><dd><p>to render states for</p></dd>
+</dl><p></div></p>
+<p><hr>
+<a id="method-set_default"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>set_default()</code></h3>
+<p>Set a default value for a rendered output
+renderers</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>set_default</span><span class='op'>(</span><span class='va'>name</span>, <span class='va'>value</span><span class='op'>)</span></pre><p></div></p>
 
-<dt><code>renderers</code></dt><dd><p>additional renderers to execute. Renderers are functions
-which take a SimFrame as an argument and return a list of
-scalar outputs to store to the final render</p></dd>
+<h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
+<p><div class="arguments"></p><dl>
+<dt><code>name</code></dt><dd><p>the variable to set a default for</p></dd>
+
+<dt><code>value</code></dt><dd><p>the default value to set for a variable</p></dd>
 
 </dl><p></div></p>
 <p><hr>
@@ -188,7 +187,7 @@ scalar outputs to store to the final render</p></dd>
 </dl><p></div></p>
 <p><hr>
 <a id="method-to_dataframe"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>to_dataframe()</code></h3>
-<p>Make a dataframe for the render</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>Return the render as a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code></p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>Render</span><span class='op'>$</span><span class='fu'>to_dataframe</span><span class='op'>(</span><span class='op'>)</span></pre><p></div></p>
 
 <p><hr>
@@ -215,7 +214,7 @@ scalar outputs to store to the final render</p></dd>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Giovanni Charles.</p>
+  <p>Developed by Giovanni Charles, Sean L. Wu, Pete Winskill.</p>
 </div>
 
 <div class="pkgdown">
